@@ -40,9 +40,6 @@ def calcangle (pos, point):
 
 def print_true_angles ():
     for point in points:
-#        dx = pos_true[0]-point[0]
-#        dy = pos_true[1]-point[1]
-#        angle = rad2deg(sin(float(dy)/dx))
         angle = calcangle(pos_true, point)
         print('Angle: %f' % angle)
 
