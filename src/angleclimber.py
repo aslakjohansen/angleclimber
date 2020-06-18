@@ -116,7 +116,7 @@ while badness>threshold and ttl>0:
         
         ttl -= 1
 
-#print(pos)
+print(pos)
 #print(steps)
 
 for i in range(len(steps)-1):
