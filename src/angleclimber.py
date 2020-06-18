@@ -15,7 +15,9 @@ points = list(map(lambda p: (float(p[0]), float(p[1]), float(p[2])), [
     (0, 2.4, 1),
     (0, 3.6, 1),
 ]))
-pos = (1.8, 5.0)
+pos = (5.0, 1.8)
+
+steps = []
 
 #
 
@@ -27,7 +29,6 @@ def mm (value):
 
 def plot_point (c, x, y, r, g, b):
     c.save()
-#    c.move_to(x, y)
     c.arc(x, y, .1, 0, 2*pi);
     c.set_source_rgba(r, g, b, 0.2)
     c.fill_preserve()
@@ -70,5 +71,5 @@ for y in range(0, ceil(height-y_offset)+1):
 # plot points
 for point in points:
     plot_point(c, point[0], point[1], 0,0,1)
-
+plot_point(c, pos[0], pos[1], 1,0,0)
 
