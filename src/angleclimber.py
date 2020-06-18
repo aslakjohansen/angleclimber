@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import cairo
-from math import ceil, pi
+from math import ceil, pi, sin
 
 SCALE = 72.0*2.54
 MM2POINTS = 72.0/25.4
@@ -10,10 +10,10 @@ CM2POINTS = 72.0/2.54
 filename = 'result.pdf'
 
 points = list(map(lambda p: (float(p[0]), float(p[1]), float(p[2])), [
-    (0, 0  , 1),
-    (0, 1.2, 1),
-    (0, 2.4, 1),
-    (0, 3.6, 1),
+    (0, 0  ,  20.183827),
+    (0, 1.2,   6.859004),
+    (0, 2.4,  -6.859004),
+    (0, 3.6, -20.183827),
 ]))
 pos = (5.0, 1.8)
 
@@ -26,6 +26,16 @@ def cm (value):
 
 def mm (value):
     return cm(float(value)/10)
+
+def rad2deg (rad):
+    return float(rad/(2*pi)*360)
+
+def print_true_angles ():
+    for point in points:
+        dx = pos[0]-point[0]
+        dy = pos[1]-point[1]
+        angle = rad2deg(sin(float(dy)/dx))
+        print('Angle: %f' % angle)
 
 def plot_point (c, x, y, r, g, b):
     c.save()
@@ -72,4 +82,6 @@ for y in range(0, ceil(height-y_offset)+1):
 for point in points:
     plot_point(c, point[0], point[1], 0,0,1)
 plot_point(c, pos[0], pos[1], 1,0,0)
+
+print_true_angles()
 
